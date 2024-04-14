@@ -16,7 +16,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ghcr.io/binary-braids/github-actions-runner          
+            binary-braids/github-actions-runner          
           tags: |
             type=schedule
             type=ref,event=branch
@@ -49,10 +49,15 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      - name: Get First Tag from Image 🏷️
+        id: get_first_tag
+        run: |
+          echo "first_tag=$(echo "${{ steps.meta.outputs.tags }}" | awk -F, '{print $1}')" >> $GITHUB_OUTPUT
+
       - name: Run Trivy Vulnerability Scanner 🏰
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ steps.meta.outputs.version }}
+          image-ref: ${{ steps.get_first_tag.outputs.first_tag }}
           format: 'table'
           vuln-type: 'os,library'
           severity: "MEDIUM,HIGH,CRITICAL"
