@@ -55,18 +55,19 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Run Snyk Vulnerability Scanner 🏰
-        uses: snyk/actions/docker@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Run Trivy Vulnerability Scanner 🏰
+        uses: aquasecurity/trivy-action@master
         with:
-          image: ${{ steps.meta.outputs.tags }}
-          args: --severity-threshold=high --file=Dockerfile
+          image-ref: ${{ steps.meta.outputs.tags }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          vuln-type: 'os,library'
+          severity: "MEDIUM,HIGH,CRITICAL"
 
-      - name: Upload Snyk scan results to GitHub Security tab 📮
+      - name: Upload Trivy scan results to GitHub Security tab 📮
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: 'snyk.sarif'
+          sarif_file: 'trivy-results.sarif'
 
       - name: Conventional Changelog Action 📋
         id: changelog

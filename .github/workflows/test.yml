@@ -49,11 +49,10 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Run Snyk Vulnerability Scanner 🏰
-        uses: snyk/actions/docker@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Run Trivy Vulnerability Scanner 🏰
+        uses: aquasecurity/trivy-action@master
         with:
-            image: ${{ steps.meta.outputs.tags }}
-            args: --severity-threshold=high
-
+          image-ref: ${{ steps.meta.outputs.tags }}
+          format: 'table'
+          vuln-type: 'os,library'
+          severity: "MEDIUM,HIGH,CRITICAL"
