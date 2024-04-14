@@ -2,4 +2,4 @@
 *
 
 # Allow specified files/folders
-!/root
+!start.sh

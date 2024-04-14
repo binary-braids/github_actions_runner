@@ -15,7 +15,7 @@ RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
 
 RUN chown -R docker ~docker && /home/docker/actions-runner/bin/installdependencies.sh
 
-COPY /root/start.sh start.sh
+COPY start.sh start.sh
 
 RUN chmod +x start.sh
 
