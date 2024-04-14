@@ -52,8 +52,7 @@ jobs:
       - name: Get First Tag from Image 🏷️
         id: get_first_tag
         run: |
-          first_tag_output=$(echo "${{ steps.meta.outputs.tags }}" | awk -F, '{print $0}')
-          echo "first_tag=$first_tag_output" >> "$GITHUB_OUTPUT"
+          echo "first_tag=$(echo "${{ steps.meta.outputs.tags }}" | awk '{print $1}')" >> "$GITHUB_OUTPUT"
 
       - name: Run Trivy Vulnerability Scanner 🏰
         uses: aquasecurity/trivy-action@master
