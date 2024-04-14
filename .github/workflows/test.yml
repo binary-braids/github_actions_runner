@@ -46,12 +46,14 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: false
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: Run Snyk Vulnerability Scanner 🏰
         uses: snyk/actions/docker@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-            image: ${{ steps.meta.outputs.labels }}
+            image: ${{ steps.meta.outputs.tags }}
             args: --severity-threshold=high
 

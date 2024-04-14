@@ -60,7 +60,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          image: ${{ steps.meta.outputs.labels }}
+          image: ${{ steps.meta.outputs.tags }}
           args: --severity-threshold=high --file=Dockerfile
 
       - name: Upload Snyk scan results to GitHub Security tab 📮
