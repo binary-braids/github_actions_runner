@@ -43,7 +43,7 @@ jobs:
       - name: Build and push 🏗️
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./root
           platforms: linux/amd64,linux/arm64
           push: false
 
