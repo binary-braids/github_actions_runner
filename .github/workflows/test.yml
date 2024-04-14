@@ -1,4 +1,4 @@
-name: Test Build for GitHub Actions Runner Container
+name: CI - Test
 
 on:
   workflow_dispatch
