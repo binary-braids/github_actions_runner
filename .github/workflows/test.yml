@@ -16,7 +16,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            binary-braids/github-actions-runner          
+            ghcr.io/binary-braids/github-actions-runner          
           tags: |
             type=schedule
             type=ref,event=branch
