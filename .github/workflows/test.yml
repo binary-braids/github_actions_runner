@@ -8,6 +8,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Configure Docker Options
+        uses: crazy-max/ghaction-setup-docker@v2
+        with:
+          version: v24.0.6
+          daemon-config: |
+            {
+              "features": {
+                "containerd-snapshotter": true
+              }
+            }  
+        env:
+          DOCKER_CLI_EXPERIMENTAL: enabled   
+
       - name: Checkout 🔔
         uses: actions/checkout@v4
 
@@ -24,6 +37,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
+
 
       - name: Setup QEMU 🖥️
         uses: docker/setup-qemu-action@v3
