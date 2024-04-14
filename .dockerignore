@@ -1,0 +1,5 @@
+# Ignore all files/folders
+*
+
+# Allow specified files/folders
+/root
