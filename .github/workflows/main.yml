@@ -1,4 +1,4 @@
-name: Build and Publish GitHub Actions Runner Container
+name: CI
 
 on:
   push: 
