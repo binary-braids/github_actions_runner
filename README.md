@@ -10,6 +10,21 @@ A self-hosted runner is a system that you deploy and manage to execute jobs from
 
 [![github](./src/img/github-mark.png)](https://www.github.com)
 
+## Table of Contents
+
+- [Configuration](#configuration)
+  - [Prerequisites](#prerequisites)
+  - [Required Environment Variables](#required-environment-variables)
+  - [Optional Environment Variables](#optional-environment-variables)
+- [Available Architecture](#available-architecture)
+- [Examples](#examples)
+  - [Docker Compose](#docker-compose)
+  - [Docker CLI](#docker-cli)
+- [Support](#support)
+  - [Issues](#issues)
+  - [Feature Requests](#feature-requests)
+  - [Updates](#updates)
+
 ## Configuration
 
 ### Prerequisites
@@ -18,7 +33,9 @@ You will need to generate a GitHub Personal Access Token to use with the contain
 
 To generate a token follow this guide: [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
-You will need to grant the `Read and write` permissions under `Self-hosted runners` for Fine-grained tokens or `manage_runners:org` permissions for classic tokens
+
+[NOTE!]
+> You will need to grant the `Read and write` permissions under `Self-hosted runners` for Fine-grained tokens or `manage_runners:org` permissions for classic tokens
 
 ### Required Environment Variables
 
@@ -65,3 +82,18 @@ docker run -d \
   --e ACCESS_TOKEN=<GitHub Org Access Token> \
   ghcr.io/binary-braids/github-actions-runner:latest
 ```
+
+## Support
+This image is provided as is and is a hobby project. With that being said, please see below on details for support.
+
+### Issues
+
+- Please submit a new [Issue](https://github.com/binary-braids/github-actions-runner/issues/new) if you encounter any bugs or issues
+
+### Feature Requests
+
+- You are welcome to submit a feature request but no timeline or guarantee will be provided regarding implentation thereof
+
+### Updates
+
+- The image will be updated from time to time based on fixes or new features
