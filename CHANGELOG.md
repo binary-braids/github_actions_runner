@@ -1,9 +1,9 @@
-## 0.1.2 (2024-04-15)
+# 0.1.0 (2024-04-15)
 
 
-### Bug Fixes
+### Features
 
-* Improve README contents ([34f2828](https://github.com/binary-braids/github-actions-runner/commit/34f28288d0424701e9e55ab225c85018b3925a64))
+* replace packages.json and modify changelog action ([9363090](https://github.com/binary-braids/github-actions-runner/commit/93630900c5b10815e90ab640f8b530930d5fe41c))
 
 
 
