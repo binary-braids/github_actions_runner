@@ -1,9 +1,9 @@
 # 0.1.0 (2024-04-15)
 
 
-### Features
+### Bug Fixes
 
-* replace packages.json and modify changelog action ([9363090](https://github.com/binary-braids/github-actions-runner/commit/93630900c5b10815e90ab640f8b530930d5fe41c))
+* change release count for changelog ([57bfa6c](https://github.com/binary-braids/github-actions-runner/commit/57bfa6cf79be68e747529a7ccc316475e8e90f7d))
 
 
 
