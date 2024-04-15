@@ -2,39 +2,81 @@ name: CI
 
 on:
   push:
-    tags:
-      - "v*.*.*"
-  pull_request:
     branches:
       - "main"
+  pull_request:
+
+permissions:
+  contents: write
+  packages: write
+  pull-requests: write
+
+env:
+  APP_NAME: github-actions-runner
 
 jobs:
-  build_and_publish:
+  build_and_test:
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
 
       - name: Checkout 🔔
         uses: actions/checkout@v4
 
-      - name: Docker Metadata 🏷️
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: |
-            ghcr.io/binary-braids/github-actions-runner          
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=sha
-
-      - name: Setup QEMU 🖥️
-        uses: docker/setup-qemu-action@v3
-
       - name: Setup Docker Buildx 🖥️
         uses: docker/setup-buildx-action@v3
+          
+      - name: Build Container 🏗️
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    needs:
+      - build_and_test
+
+    outputs:
+      skipped: ${{ steps.changelog.outputs.skipped }}
+      tag: ${{ steps.changelog.outputs.tag }}
+      clean_changelog: ${{ steps.changelog.outputs.clean_changelog }}
+      version: ${{ steps.changelog.outputs.version }}      
+
+    steps:
+
+      - name: Checkout 🔔
+        uses: actions/checkout@v4
+
+      - name: Conventional Changelog Action 📋
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          skip-git-pull: "true"
+
+      - name: Generate Release 📦
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.changelog.outputs.tag }}
+          name: ${{ steps.changelog.outputs.tag }}
+          files: "**/*"
+          generate_release_notes: true
+          body: ${{ steps.changelog.outputs.clean_changelog }}
+
+
+  publish:
+    name: Publish
+    if: github.event_name != 'pull_request' && needs.release.outputs.skipped == 'false'
+    runs-on: ubuntu-latest
+    needs:
+      - release
+    steps:
+
+      - name: Checkout 🔔
+        uses: actions/checkout@v4
 
       - name: Login to GitHub Container Registry 🔓
         if: github.event_name != 'pull_request'
@@ -42,8 +84,25 @@ jobs:
         with:
           registry: ghcr.io  
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}       
-          
+          password: ${{ secrets.GITHUB_TOKEN }} 
+
+      - name: Docker Metadata 🏷️
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ghcr.io/${{ github.repository_owner }}/${{ env.APP_NAME }}          
+          tags: |
+            latest
+            ${{ needs.release.outputs.version}}
+            ${{ github.sha }}
+
+      - name: Setup QEMU 🖥️
+        uses: docker/setup-qemu-action@v3
+
+      - name: Setup Docker Buildx 🖥️
+        uses: docker/setup-buildx-action@v3
+        
       - name: Build and push 🏗️
         uses: docker/build-push-action@v5
         with:
@@ -66,19 +125,3 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: 'trivy-results.sarif'
-
-      - name: Conventional Changelog Action 📋
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@v5
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          skip-git-pull: "true"
-
-      - name: Generate Release 📦
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ steps.meta.outputs.tags }}
-          name: ${{ steps.meta.outputs.tags }}
-          body: ${{ steps.changelog.outputs.clean_changelog }}
-
