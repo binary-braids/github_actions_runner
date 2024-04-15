@@ -57,7 +57,7 @@ jobs:
           git-user-name: "github-actions[bot]"
           git-user-email: "github-actions[bot]@users.noreply.github.com"
           skip-git-pull: "true"
-          version-file: .github/package.yaml
+          version-file: package.yaml
           create-summary: true
 
       - name: Generate Release 📦
