@@ -1,9 +1,9 @@
-# 0.1.0 (2024-04-15)
+## 0.1.1 (2024-04-15)
 
 
 ### Bug Fixes
 
-* change release count for changelog ([57bfa6c](https://github.com/binary-braids/github-actions-runner/commit/57bfa6cf79be68e747529a7ccc316475e8e90f7d))
+* add permissions for trivy codeql upload ([14e343a](https://github.com/binary-braids/github-actions-runner/commit/14e343ada959f7e30fa12bc73e36ed72890a968f))
 
 
 
