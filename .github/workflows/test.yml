@@ -55,4 +55,4 @@ jobs:
           image-ref: ${{ steps.meta.outputs.tags }}
           format: 'table'
           vuln-type: 'os,library'
-          severity: "MEDIUM,HIGH,CRITICAL"
+          severity: "HIGH,CRITICAL"
