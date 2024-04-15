@@ -54,7 +54,11 @@ jobs:
         uses: TriPSs/conventional-changelog-action@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          git-user-name: "github-actions[bot]"
+          git-user-email: "github-actions[bot]@users.noreply.github.com"
           skip-git-pull: "true"
+          version-file: .github/package.yaml
+          create-summary: true
 
       - name: Generate Release 📦
         if: ${{ steps.changelog.outputs.skipped == 'false' }}
