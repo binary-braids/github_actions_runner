@@ -1,9 +1,9 @@
-## 0.1.1 (2024-04-15)
+## 0.1.2 (2024-04-20)
 
 
 ### Bug Fixes
 
-* add permissions for trivy codeql upload ([14e343a](https://github.com/binary-braids/github-actions-runner/commit/14e343ada959f7e30fa12bc73e36ed72890a968f))
+* reconfigure `start.sh` script to correctly accept optional environment variables ([a8bee9c](https://github.com/binary-braids/github-actions-runner/commit/a8bee9cef55d4123649270889adb3f0c22965a72))
 
 
 
