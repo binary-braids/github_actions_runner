@@ -34,7 +34,7 @@ You will need to generate a GitHub Personal Access Token to use with the contain
 To generate a token follow this guide: [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
 
-[NOTE!]
+>[!NOTE]
 > You will need to grant the `Read and write` permissions under `Self-hosted runners` for Fine-grained tokens or `manage_runners:org` permissions for classic tokens
 
 ### Required Environment Variables
