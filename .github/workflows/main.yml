@@ -58,6 +58,7 @@ jobs:
           git-user-name: "github-actions[bot]"
           git-user-email: "github-actions[bot]@users.noreply.github.com"
           skip-git-pull: "true"
+          skip-on-empty: "false"
           release-count: 10
           version-file: package.yaml
           create-summary: true
