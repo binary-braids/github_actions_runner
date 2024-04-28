@@ -1,14 +1,9 @@
-# 1.0.0 (2024-04-28)
+## 1.0.1 (2024-04-28)
 
 
-### Features
+### Bug Fixes
 
-* various updates ([285ab6c](https://github.com/binary-braids/github-actions-runner/commit/285ab6cc1ec47320bb9f0e1662348405b4121abd))
-
-
-### BREAKING CHANGES
-
-* Major change to container image
+* Revert image back to `22.04` for stability ([4596235](https://github.com/binary-braids/github-actions-runner/commit/4596235d23aea06db597724b0273f93a62baeb6c))
 
 
 
