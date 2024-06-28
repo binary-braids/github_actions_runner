@@ -35,6 +35,7 @@ jobs:
 
   release:
     name: Release
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     needs:
       - build_and_test
@@ -49,6 +50,7 @@ jobs:
 
       - name: Checkout 🔔
         uses: actions/checkout@v4
+        
 
       - name: Conventional Changelog Action 📋
         id: changelog
