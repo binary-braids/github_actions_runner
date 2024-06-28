@@ -5,8 +5,9 @@
 A self-hosted runner is a system that you deploy and manage to execute jobs from GitHub Actions on GitHub.com
 
 ![GitHub Actions](https://github.com/binary-braids/github_actions_runner/actions/workflows/main.yml/badge.svg)
-[![Trivy](https://img.shields.io/badge/trivy-enabled-brightgreen?style=for-the-badge&logo=trivy)](https://trivy.dev)
 [![HitCount](https://hits.dwyl.com/binary-braids/github-actions-runner.svg?style=for-the-badge&show=unique)](http://hits.dwyl.com/binary-braids/github-actions-runner)
+[![renovate](https://img.shields.io/badge/renovate-enabled-brightgreen?style=for-the-badge&logo=renovatebot)](https://github.com/renovatebot/renovate)
+[![Trivy](https://img.shields.io/badge/trivy-enabled-brightgreen?style=for-the-badge&logo=trivy)](https://trivy.dev)
 
 [![github](./src/img/github-mark.png)](https://www.github.com)
 
