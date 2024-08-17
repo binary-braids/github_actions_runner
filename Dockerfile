@@ -7,7 +7,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update -y && apt upgrade -y && useradd -m docker
 RUN apt install -y --no-install-recommends \
-    curl jq build-essential unzip libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip zip
+    curl jq build-essential unzip libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip zip apt-transport-https ca-certificates gnupg
 
 RUN mkdir -p /etc/apt/keyrings \
     && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg \
