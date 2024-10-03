@@ -1,3 +1,7 @@
+## [1.0.46](https://github.com/binary-braids/github-actions-runner/compare/v1.0.45...v1.0.46) (2024-10-03)
+
+
+
 ## [1.0.45](https://github.com/binary-braids/github-actions-runner/compare/v1.0.44...v1.0.45) (2024-10-03)
 
 
@@ -36,10 +40,6 @@
 ### Bug Fixes
 
 * remove skip on git pull for changelog action ([2df41ce](https://github.com/binary-braids/github-actions-runner/commit/2df41ce2e5b397fbd0aa73fe677fb857901ac2b5))
-
-
-
-## [1.0.36](https://github.com/binary-braids/github-actions-runner/compare/v1.0.35...v1.0.36) (2024-08-29)
 
 
 
